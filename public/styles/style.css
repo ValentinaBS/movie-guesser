@@ -1,0 +1,75 @@
+:root {
+    --primary: #F16D22;
+    --shadows: #CDC6C3;
+    --black: #0c0b0b;
+    --title: 'Roboto Slab', serif;
+    --body: 'Open Sans', sans-serif;
+}
+
+body {
+    color: var(--black);
+    font-family: var(--body);
+}
+
+h1, h2, h3, .title {
+    font-family: var(--title);
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}
+
+section {
+    margin: 4rem 0 6rem;
+}
+
+[v-cloak] {
+    display: none !important;
+}
+
+.nav-logo {
+    width: 100px;
+}
+
+.form-control,
+.form-select {
+    border-color: var(--shadows);
+    border-width: 2px;
+}
+
+.form-control::placeholder {
+    color: gray;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border: 2px solid var(--primary);
+    box-shadow: none;
+}
+
+.synopsis, .inputMovie, .movieButtons, .edit-section {
+    max-width: 600px;
+}
+
+.synopsis {
+    min-height: 9rem;
+}
+
+.primary-btn, .secondary-btn:hover {
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+}
+
+.primary-btn:hover, .secondary-btn {
+    border-color: var(--primary);
+    background-color: white;
+    color: var(--black);
+}
+
+@media screen and (min-width: 1024px) {
+    .edit-section {
+        max-width: 800px;
+    }
+}
