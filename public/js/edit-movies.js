@@ -9,7 +9,7 @@ const options = {
             releasedInput: "",
             imdbratingInput: null,
             synopsisInput: "",
-
+            errorMessage: "",
             editingMovie: {},
         }
     },
@@ -24,6 +24,13 @@ const options = {
     },
     methods: {
         addMovie() {
+
+            if(isNaN(this.imdbratingInput) && this.imdbratingInput != null) {
+                this.errorMessage = "Please enter a numeric amount with the next format: 8.4";
+                return
+            }
+            this.errorMessage = "";
+
             axios.post('/api/movies', {
                 imdbid: this.imdbidInput,
                 title: this.titleInput,
@@ -49,9 +56,16 @@ const options = {
                 });
         },
         editMovie(movieId) {
+            this.errorMessage = "";
             this.editingMovie = this.allMovies.find(movie => movie.imdbid == movieId)
         },
         confirmEditMovie() {
+            if(isNaN(this.editingMovie.imdbrating) && this.editingMovie.imdbrating != null) {
+                this.errorMessage = "Please enter a numeric amount with the next format: 8.4";
+                return
+            }
+            this.errorMessage = "";
+
             axios.put(`/api/movies/${this.editingMovie.imdbid}`, this.editingMovie)
             .then(() => {
                 Swal.fire({

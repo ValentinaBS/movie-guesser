@@ -6,6 +6,8 @@ const options = {
             allMovies: [],
             displayMovie: {},
             submittedAnswer: "",
+            isClueYearShowing: false,
+            isClueRatingShowing: false
         }
     },
     created() {
@@ -33,7 +35,6 @@ const options = {
                     text: `Congrats! The movie was ${this.displayMovie.title}.`
                 })
                 this.nextMovie()
-                this.submittedAnswer = ""
             } else {
                 const Toast = Swal.mixin({
                     toast: true,
@@ -48,6 +49,14 @@ const options = {
                 })
             }
         },
+        revealClue(clueType) {
+            if(clueType == 'year') {
+                this.isClueYearShowing = true;
+            } 
+            if(clueType == 'rating') {
+                this.isClueRatingShowing = true;
+            }
+        },
         nextMovie() {
             // Find the current index of the displayed movie
             const currentIndex = this.allMovies.findIndex(movie => movie.title === this.displayMovie.title);
@@ -56,6 +65,9 @@ const options = {
                 // If the current index is valid and not the last movie in the array
                 // Update displayMovie to the next movie
                 this.displayMovie = this.allMovies[currentIndex + 1];
+                this.submittedAnswer = ""
+                this.isClueYearShowing = false;
+                this.isClueRatingShowing = false;
             } else {
                 this.submitMessage = "You've reached the end of the movie list.";
             }
@@ -64,6 +76,9 @@ const options = {
             const currentIndex = this.allMovies.findIndex(movie => movie.title === this.displayMovie.title);
             if (currentIndex !== -1 && currentIndex != 0) {
                 this.displayMovie = this.allMovies[currentIndex - 1];
+                this.submittedAnswer = ""
+                this.isClueYearShowing = false;
+                this.isClueRatingShowing = false;
             } else {
                 this.submitMessage = "You've reached the beginning of the movie list.";
             }

@@ -9,6 +9,7 @@
 body {
     color: var(--black);
     font-family: var(--body);
+    min-height: 100vh;
 }
 
 h1, h2, h3, .title {
@@ -20,7 +21,8 @@ textarea {
     height: 200px;
 }
 
-section {
+main {
+    min-height: 65vh;
     margin: 4rem 0 6rem;
 }
 
@@ -56,6 +58,10 @@ section {
     min-height: 9rem;
 }
 
+.movieButtons {
+    margin-top: 5rem;
+}
+
 .primary-btn, .secondary-btn:hover {
     background-color: var(--primary);
     color: white;
@@ -66,6 +72,17 @@ section {
     border-color: var(--primary);
     background-color: white;
     color: var(--black);
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    transition: all 0.5s;
+    background-color: white;
+    color: var(--main);
 }
 
 @media screen and (min-width: 1024px) {

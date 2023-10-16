@@ -29,6 +29,7 @@
                     <span class="title fs-3 fw-bold d-none d-md-block">Movie Guesser</span>
                 </a>
                 <a class="nav-link active" href="#">
+                    <i class="bi bi-pencil-square me-1"></i>
                     Edit movie list
                 </a>
             </div>
@@ -38,10 +39,10 @@
             <h1 class="text-center mt-5 mb-0">Modify our movie list</h1>
 
             <section>
-                <h2 class="text-center mb-4">
+                <h2 class="text-center mb-4 mt-5">
                     Add a movie to the list!
                 </h2>
-                <form @submit.prevent class="inputMovie mx-5 mx-md-auto row g-3">
+                <form @submit.prevent="addMovie" class="inputMovie mx-5 mx-md-auto row g-3">
                     <div class="col-md-6">
                         <label for="imdbid" class="form-label">Movie ID</label>
                         <input v-model="imdbidInput" type="text" class="form-control" id="imdbid" required>
@@ -57,14 +58,17 @@
                     </div>
                     <div class="col-md-6">
                         <label for="imdbrating" class="form-label">IMDB Rating (optional)</label>
-                        <input v-model="imdbratingInput" type="number" class="form-control" id="imdbrating">
+                        <input v-model="imdbratingInput" type="text" class="form-control" id="imdbrating">
                     </div>
                     <div class="col-12">
                         <label for="synopsis" class="form-label">Synopsis</label>
                         <textarea v-model="synopsisInput" class="form-control" id="synopsis" required></textarea>
                     </div>
+                    <span class="text-center">
+                        {{ errorMessage }}
+                    </span>
                     <div class="col-12">
-                        <button @click="addMovie" type="submit" class="btn primary-btn py-2 w-100 mt-3">
+                        <button type="submit" class="btn primary-btn py-2 w-100 mt-3">
                             <i class="bi bi-plus-lg me-2"></i>
                             Add New Movie
                         </button>
@@ -115,12 +119,15 @@
                                 </div>
                                 <div class="my-3">
                                     <label for="editImdbrating" class="form-label">IMDB Rating</label>
-                                    <input v-model="editingMovie.imdbrating" type="number" class="form-control" id="editImdbrating">
+                                    <input v-model="editingMovie.imdbrating" type="text" class="form-control" id="editImdbrating">
                                 </div>
                                 <div class="my-3">
                                     <label for="editSynopsis" class="form-label">Synopsis</label>
-                                    <textarea v-model="editingMovie.synopsis" class="form-control" id="editSynopsis"></textarea>
+                                    <textarea v-model="editingMovie.synopsis" maxlength="190" class="form-control" id="editSynopsis"></textarea>
                                 </div>
+                                <span class="text-center">
+                                    {{ errorMessage }}
+                                </span>
                             </form>
                         </div>
                         <div class="modal-footer">

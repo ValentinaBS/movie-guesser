@@ -29,6 +29,7 @@
                     <span class="title fs-3 fw-bold d-none d-md-block">Movie Guesser</span>
                 </a>
                 <a class="nav-link" href="./pages/edit-movies.html">
+                    <i class="bi bi-pencil-square me-1"></i>
                     Edit movie list
                 </a>
             </div>
@@ -51,19 +52,58 @@
                 </div>
             </form>
 
+            <div class="d-flex flex-wrap justify-content-center align-items-center row-gap-3 column-gap-4 mt-4 mb-5 mx-3">
+                <template v-if="isClueYearShowing">
+                    <p class="text-center mb-0 py-2">
+                        This movie was released in {{ displayMovie.released }}.
+                    </p>
+                </template>
+                <template v-else>
+                    <button @click="revealClue('year')" class="btn primary-btn">
+                        Reveal released year
+                    </button>
+                </template>
+                <template v-if="isClueRatingShowing">
+                    <p class="text-center mb-0 py-2">
+                        This movie's rating was {{ displayMovie.imdbrating }}.
+                    </p>
+                </template>
+                <template v-if="displayMovie.imdbrating && !isClueRatingShowing">
+                    <button @click="revealClue('rating')" class="btn primary-btn">
+                        Reveal rating
+                    </button>
+                </template>
+            </div>
+
             <div
-                class="movieButtons d-flex flex-column-reverse flex-md-row justify-content-between row-gap-4 mt-5 mx-5 mx-md-auto">
-                <button :disabled="allMovies.indexOf(displayMovie) == 0" @click="previousMovie" class="btn primary-btn d-flex align-items-center column-gap-2 py-2">
+                class="movieButtons d-flex flex-column-reverse flex-md-row justify-content-between row-gap-4 mx-5 mx-md-auto">
+                <button :disabled="allMovies.indexOf(displayMovie) == 0" @click="previousMovie"
+                    class="btn primary-btn d-flex align-items-center column-gap-2 py-2">
                     <i class="bi bi-caret-left-fill"></i>
                     Previous Movie
                 </button>
-                <button @click="nextMovie" class="btn primary-btn d-flex align-items-center justify-content-end column-gap-2 py-2">
+                <button @click="nextMovie"
+                    class="btn primary-btn d-flex align-items-center justify-content-end column-gap-2 py-2">
                     Next Movie
                     <i class="bi bi-caret-right-fill"></i>
                 </button>
             </div>
         </main>
     </div>
+
+    <footer class="mt-5 px-3 py-4">
+        <div class="d-flex flex-wrap pt-3 mt-3 justify-content-start justify-content-md-center border-top">
+            <a class="footer-link me-4 rounded-1 px-3 py-2"
+                href="https://www.linkedin.com/in/valentina-belen-sanchez/">
+                <i class="bi bi-linkedin me-1"></i>
+                Valentina Belén Sánchez
+            </a>
+            <a class="footer-link rounded-1 px-3 py-2" href="https://github.com/ValentinaBS">
+                <i class="bi bi-github me-1"></i>
+                ValentinaBS
+            </a>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
